@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>CupidLOVE | Master V35 Final</title>
+    <title>CupidCHAT</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -85,7 +85,7 @@
 
         /* SETTINGS DESIGN (FIXED OVERLAP) */
         .setting-group { background:#fff; border-radius: 25px; overflow: hidden; margin-top: 20px; border: 1px solid #eee; box-shadow: var(--shadow); }
-        .setting-row { display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 18px 22px !important; border-bottom: 1px solid #f9f9f9; cursor: pointer; color: #333; min-height: 65px; }
+        .setting-row { display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 12px 22px !important; border-bottom: 1px solid #f9f9f9; cursor: pointer; color: #333; min-height: 45px; }
         .setting-row:last-child { border-bottom: none; }
         .setting-row span { font-weight: 600; font-size: 0.95rem; }
         .setting-row i { color: var(--pink); font-size: 1.2rem; }
@@ -96,7 +96,11 @@
         .btn-p { background: var(--pink); color: #fff; border: none; padding: 16px; border-radius: 15px; font-weight: 900; width: 100%; cursor: pointer; transition: 0.3s; font-family: 'Cinzel'; }
         .hidden { display: none !important; }
         .gold { color: var(--yellow); }
+
     </style>
+    <style>h6 {
+    opacity: 0.6; /* 60% opacity */
+}</style>
 </head>
 <body>
 
@@ -121,7 +125,7 @@
             <!-- HOME -->
             <div id="scr-home" class="screen active">
                 <div class="hero">
-                    <p style="font-size: 0.7rem; font-weight: 800; letter-spacing: 4px;">SOUL BOND SINCE</p>
+                    <p style="font-size: 0.7rem; font-weight: 800; letter-spacing: 4px;">SINCE</p>
                     <h1 id="home-days" style="font-size: 6rem; font-family: 'Cinzel'; color: var(--yellow); line-height: 1;">0</h1>
                     <p style="font-weight: 800;">ETERNAL DAYS</p>
                 </div>
@@ -189,7 +193,7 @@
                     <div class="setting-row" onclick="openModal('privacy')"><span>Privacy Policy</span><i class="fas fa-shield-halved"></i></div>
                 </div>
 
-                <a href="https://web.whatsapp.com" target="_blank" style="background: #25D366; color: white; padding: 18px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: 800; margin-top: 20px;"><i class="fab fa-whatsapp"></i> WhatsApp Web</a>
+                <a href="https://chat.whatsapp.com/KHxi4ymgJ8zKeDztIRER1I" target="_blank" style="background: #25D366; color: white; padding: 18px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: 800; margin-top: 20px;"><i class="fab fa-whatsapp"></i> Support</a>
 
                 <div style="text-align: center; padding: 30px 10px; opacity: 0.5;">
                     <p>App Developed by <b>Avishek Ojha</b></p>
@@ -212,6 +216,7 @@
             <h1 class="cinzel" style="color: var(--pink); font-size: 3rem;">CUPID</h1>
             <button id="btn-google" class="btn-p" style="max-width: 300px;"><i class="fab fa-google"></i> LOGIN WITH GOOGLE</button>
             <button id="btn-skip" style="background: none; border: none; color: var(--pink); margin-top: 25px; font-weight: 900; text-decoration: underline; cursor: pointer;">SKIP FOR NOW</button>
+           <br><br> <h6>By clicking Login or skipping, you agree to our <a href="tac.html" target="_blank">Terms and Conditions</a> </h6>
         </div>
 
         <div id="modal-box" class="modal"><div class="modal-content" id="modal-body"></div></div>
@@ -393,4 +398,5 @@
         };
     </script>
 </body>
+
 </html>
