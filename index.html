@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>CupidLOVE | Avishek Ojha Master V33</title>
+    <title>CupidLOVE | Master V35 Final</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -18,40 +18,42 @@
     </style>
 
     <style>
-        /* --- GLOBAL RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body, html { height: 100%; width: 100%; overflow: hidden; font-family: var(--font); background: #FFF5F7; transition: 0.5s; }
         .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: -2; transition: 0.8s; }
 
+        /* THE FIX: Absolute viewport height for keyboard compatibility */
         .app-container { 
-            width: 100%; height: 100%; max-width: 500px; 
+            width: 100%; height: 100dvh; max-width: 500px; 
             margin: 0 auto; position: relative; display: flex; 
             flex-direction: column; background: #fff; box-shadow: 0 0 50px rgba(0,0,0,0.1); 
         }
 
         /* --- HEADER --- */
         header { 
-            height: 70px; background: var(--pink); display: flex; 
+            height: 75px; background: var(--pink); display: flex; 
             align-items: center; justify-content: space-between; 
             padding: 0 20px; z-index: 3000; color: white; border-bottom: 3px solid var(--yellow);
             flex-shrink: 0;
         }
         .header-logo { height: 35px; border-radius: 8px; border: 2px solid var(--yellow); }
-        .bond-ui { display: flex; align-items: center; gap: 10px; flex: 1; justify-content: center; }
+        .bond-ui { display: flex; align-items: center; gap: 8px; flex: 1; justify-content: center; }
         .av { width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--pink); display: flex; align-items: center; justify-content: center; font-weight: 900; border: 2px solid var(--yellow); font-size: 0.7rem; }
         .heart-beat { color: var(--yellow); animation: beat 1.2s infinite; }
         @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
 
-        /* --- SCREEN CONTAINER --- */
+        /* --- SCREEN ENGINE --- */
         .screen-container { flex: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; }
         .screen { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: none; flex-direction: column; padding: 20px;
             overflow-y: auto; -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px;
         }
-        .screen.active { display: flex; }
+        .screen.active { display: flex; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- CHAT SECTION (KEYBOARD FIX) --- */
+        /* --- CHAT SECTION --- */
         #scr-chat { padding: 0; background: #f9f9f9; }
         #chat-list { flex: 1; display: flex; flex-direction: column-reverse; overflow-y: auto; padding: 15px; }
         .msg-row { width: 100%; display: flex; margin-bottom: 12px; }
@@ -65,7 +67,7 @@
         .chat-tools { display: flex; gap: 10px; padding: 12px 18px; align-items: center; }
         #chat-input { flex: 1; border: none; font-size: 1rem; outline: none; background: #f5f5f5; padding: 10px 20px; border-radius: 30px; }
 
-        /* --- NAVIGATION (GIF ICONS) --- */
+        /* --- NAVIGATION --- */
         nav { height: 95px; display: flex; justify-content: space-around; align-items: center; background: #fff; border-top: 1px solid #eee; z-index: 3000; padding-bottom: env(safe-area-inset-bottom); flex-shrink: 0; }
         .nav-item { text-align: center; color: #BDBDBD; transition: 0.3s; cursor: pointer; flex: 1; display: flex; flex-direction: column; align-items: center; }
         .nav-gif { width: 35px; height: 35px; margin-bottom: 2px; filter: grayscale(100%) opacity(0.5); }
@@ -75,15 +77,25 @@
 
         /* --- UI COMPONENTS --- */
         .glass-card { background: var(--glass); border-radius: 30px; padding: 25px; box-shadow: var(--shadow); border: 1px solid rgba(216, 27, 96, 0.1); margin-bottom: 20px; }
-        .shop-card { display: flex; align-items: center; gap: 15px; padding: 15px; background: #fff; border-radius: 20px; margin-bottom: 12px; border: 1px solid #eee; }
+        .hero { background: var(--pink); color: white; text-align: center; padding: 40px 20px; border-radius: 35px; }
+        
+        /* SHOP DESIGN */
+        .shop-card { display: flex; align-items: center; gap: 15px; padding: 15px; background: #fff; border-radius: 20px; margin-bottom: 12px; border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
         .shop-img { width: 55px; height: 55px; border-radius: 12px; object-fit: cover; border: 2px solid var(--pink); }
-        
-        .btn-p { background: var(--pink); color: #fff; border: none; padding: 16px; border-radius: 15px; font-weight: 900; width: 100%; cursor: pointer; font-family: 'Cinzel'; }
-        
+
+        /* SETTINGS DESIGN (FIXED OVERLAP) */
+        .setting-group { background:#fff; border-radius: 25px; overflow: hidden; margin-top: 20px; border: 1px solid #eee; box-shadow: var(--shadow); }
+        .setting-row { display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 18px 22px !important; border-bottom: 1px solid #f9f9f9; cursor: pointer; color: #333; min-height: 65px; }
+        .setting-row:last-child { border-bottom: none; }
+        .setting-row span { font-weight: 600; font-size: 0.95rem; }
+        .setting-row i { color: var(--pink); font-size: 1.2rem; }
+
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); z-index: 9999; display: none; justify-content: center; align-items: center; padding: 25px; }
         .modal-content { width: 100%; max-width: 450px; background: #fff; border-radius: 35px; padding: 35px; text-align: center; }
 
+        .btn-p { background: var(--pink); color: #fff; border: none; padding: 16px; border-radius: 15px; font-weight: 900; width: 100%; cursor: pointer; transition: 0.3s; font-family: 'Cinzel'; }
         .hidden { display: none !important; }
+        .gold { color: var(--yellow); }
     </style>
 </head>
 <body>
@@ -101,27 +113,28 @@
                 <div class="av" id="av-them">P</div>
                 <span id="bond-names" style="font-family:'Cinzel'; font-weight:900; font-size:0.8rem; margin-left:10px;">...</span>
             </div>
-            <i class="fas fa-expand-alt" style="color:var(--yellow); cursor:pointer;" onclick="document.documentElement.requestFullscreen()"></i>
+            <i class="fas fa-expand-arrows-alt" style="color:var(--yellow); cursor:pointer;" onclick="document.documentElement.requestFullscreen()"></i>
         </header>
 
         <!-- SCREENS -->
         <div class="screen-container">
-            
             <!-- HOME -->
             <div id="scr-home" class="screen active">
-                <div style="background: var(--pink); color: white; padding: 40px 20px; border-radius: 30px; text-align: center;">
-                    <p style="font-size: 0.7rem; font-weight: 800; letter-spacing: 4px;">LOVE JOURNEY</p>
+                <div class="hero">
+                    <p style="font-size: 0.7rem; font-weight: 800; letter-spacing: 4px;">SOUL BOND SINCE</p>
                     <h1 id="home-days" style="font-size: 6rem; font-family: 'Cinzel'; color: var(--yellow); line-height: 1;">0</h1>
-                    <p style="font-weight: 800;">DAYS TOGETHER</p>
+                    <p style="font-weight: 800;">ETERNAL DAYS</p>
                 </div>
                 <div class="glass-card" style="padding: 15px; text-align: center; border: 2px solid var(--yellow); margin-top: 15px; background:#fff;">
-                    <i class="fas fa-cake-candles gold"></i> <span id="partner-bday-txt">Bday: Loading...</span>
+                    <i class="fas fa-cake-candles gold"></i> <span id="partner-bday-txt" style="font-weight: 700;">Partner Bday: Loading...</span>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-                    <div class="glass-card" style="text-align: center; padding: 20px; margin: 0;"><h2 id="home-streak" style="color: var(--pink);">0 🔥</h2><p style="font-size: 0.6rem; font-weight: 800;">STREAK</p></div>
-                    <div class="glass-card" style="text-align: center; padding: 20px; margin: 0;"><h2 id="home-points" style="color: var(--pink);">0 💖</h2><p style="font-size: 0.6rem; font-weight: 800;">POINTS</p></div>
+                    <div class="glass-card" style="text-align: center; padding: 20px; margin: 0;"><h2 id="home-streak" style="color: var(--pink);">0 🔥</h2><p style="font-size: 0.6rem; font-weight: 800; opacity: 0.6;">STREAK</p></div>
+                    <div class="glass-card" style="text-align: center; padding: 20px; margin: 0;"><h2 id="home-points" style="color: var(--pink);">0 💖</h2><p style="font-size: 0.6rem; font-weight: 800; opacity: 0.6;">POINTS</p></div>
                 </div>
-                <p style="margin:25px 0 10px 0; font-weight:900; color:var(--pink); font-size:0.8rem; font-family:'Cinzel';">THEME SHOP</p>
+                
+                <!-- THEME SHOP (DYNAMIC) -->
+                <p class="cinzel" style="margin:25px 0 10px 0; color:var(--pink); font-size:0.8rem; font-weight:900;">DYNAMIC THEME SHOP</p>
                 <div id="theme-shop-list"></div>
             </div>
 
@@ -131,7 +144,6 @@
                 <div class="chat-input-bar">
                     <div id="reply-context" class="hidden"><span id="reply-preview">Replying...</span><i class="fas fa-times-circle" onclick="closeReply()"></i></div>
                     <div class="chat-tools">
-                        <i class="fas fa-camera" style="font-size:1.5rem; color:#ccc;"></i>
                         <input type="text" id="chat-input" placeholder="Whisper something...">
                         <button id="btn-send" class="btn-p" style="width:45px; height:45px; border-radius:50%; padding:0;"><i class="fas fa-paper-plane"></i></button>
                     </div>
@@ -151,13 +163,12 @@
                     <p id="p-mood-status" style="text-align: center; font-size: 0.8rem; margin-top: 15px; opacity: 0.6; font-style: italic;">Partner is thinking...</p>
                 </div>
                 <div class="glass-card" style="height: 380px; display: flex; flex-direction: column;">
-                    <p style="font-weight: 800; color: var(--pink); font-size: 0.8rem; margin-bottom: 10px;">SCRIBBLE BOARD</p>
                     <canvas id="doodle-pad" style="flex:1; background: #fafafa; border-radius: 20px; touch-action: none; border: 1px solid #f0f0f0;"></canvas>
-                    <button id="btn-draw-send" class="btn-p" style="margin-top: 10px;">SHARE</button>
+                    <button id="btn-draw-send" class="btn-p" style="margin-top: 10px;">SHARE SCRIBBLE</button>
                 </div>
             </div>
 
-            <!-- PROFILE (SCROLLABLE SETTINGS) -->
+            <!-- PROFILE (SCROLLABLE) -->
             <div id="scr-profile" class="screen">
                 <div class="glass-card" style="text-align: center; border: 3px dashed var(--pink); background: #FFFDE7;">
                     <p style="font-weight: 900; color: var(--pink);">MY PAIR CODE</p>
@@ -167,29 +178,33 @@
 
                 <div id="box-pair" class="glass-card" style="margin-top: 20px;">
                     <p style="font-weight: 800; color: var(--pink);">LINK PARTNER</p>
-                    <input type="text" id="partner-inp" placeholder="Partner's Code" maxlength="5" style="width: 100%; padding: 15px; margin-top: 10px; text-align: center; font-size: 1.8rem; border-radius: 15px; border: 1px solid #eee;">
-                    <button id="btn-pair" class="btn-p" style="background: var(--yellow); color: #000; margin-top: 15px;">LINK HEARTS</button>
+                    <input type="text" id="partner-inp" placeholder="00000" maxlength="5" style="width: 100%; padding: 15px; margin-top: 10px; text-align: center; font-size: 1.8rem; border-radius: 15px; border: 1px solid #eee;">
+                    <button id="btn-pair-now" class="btn-p" style="background: var(--yellow); color: #000; margin-top: 15px;">LINK HEARTS</button>
                 </div>
 
-                <!-- SCROLLABLE SETTING BOX -->
-                <div style="background:#fff; border-radius: 20px; overflow: hidden; border: 1px solid #eee; margin-top: 20px;">
-                    <div class="setting-row" onclick="openModal('name')"><span>Update Nickname</span><i class="fas fa-user-pen" style="color:var(--pink);"></i></div>
-                    <div class="setting-row" onclick="openModal('date')"><span>Set Anniversary</span><i class="fas fa-calendar-heart" style="color:var(--pink);"></i></div>
-                    <div class="setting-row" onclick="openModal('birthday')"><span>Set My Birthday</span><i class="fas fa-cake-candles" style="color:var(--pink);"></i></div>
-                    <div class="setting-row" onclick="openModal('privacy')"><span>Privacy Policy</span><i class="fas fa-shield-halved" style="color:var(--pink);"></i></div>
+                <div class="setting-group">
+                    <div class="setting-row" onclick="openModal('name')"><span>Update Nickname</span><i class="fas fa-user-edit"></i></div>
+                    <div class="setting-row" onclick="openModal('date')"><span>Set Anniversary</span><i class="fas fa-calendar-heart"></i></div>
+                    <div class="setting-row" onclick="openModal('birthday')"><span>Set My Birthday</span><i class="fas fa-cake-candles"></i></div>
+                    <div class="setting-row" onclick="openModal('privacy')"><span>Privacy Policy</span><i class="fas fa-shield-halved"></i></div>
                 </div>
 
-                <a href="https://web.whatsapp.com" target="_blank" style="background: #25D366; color: white; padding: 18px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: 800; margin-top: 20px;">
-                    <i class="fab fa-whatsapp"></i> WhatsApp Link
-                </a>
+                <a href="https://web.whatsapp.com" target="_blank" style="background: #25D366; color: white; padding: 18px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: 800; margin-top: 20px;"><i class="fab fa-whatsapp"></i> WhatsApp Web</a>
 
-                <div style="text-align: center; padding: 40px 10px; opacity: 0.5; font-size: 0.8rem;">
+                <div style="text-align: center; padding: 30px 10px; opacity: 0.5;">
                     <p>App Developed by <b>Avishek Ojha</b></p>
-                    <p>Email: cc@avishekojha.com.np</p>
                     <button id="btn-logout" style="margin-top: 20px; background: #fff; border: 1px solid #ff4d4d; color: #ff4d4d; padding: 12px 30px; border-radius: 15px; width: 100%; font-weight: 800; cursor: pointer;">LOGOUT</button>
                 </div>
             </div>
         </div>
+
+        <!-- NAVBAR -->
+        <nav id="navbar" class="hidden">
+            <div class="nav-item active" onclick="changeTab('home')"><img src="home.gif" class="nav-gif"><span>Home</span></div>
+            <div class="nav-item" onclick="changeTab('chat')"><img src="chat.gif" class="nav-gif"><span>Chat</span></div>
+            <div class="nav-item" onclick="changeTab('vault')"><img src="vault.gif" class="nav-gif"><span>Vault</span></div>
+            <div class="nav-item" onclick="changeTab('profile')"><img src="profile.gif" class="nav-gif"><span>Me</span></div>
+        </nav>
 
         <!-- AUTH OVERLAY -->
         <div id="auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
@@ -199,24 +214,14 @@
             <button id="btn-skip" style="background: none; border: none; color: var(--pink); margin-top: 25px; font-weight: 900; text-decoration: underline; cursor: pointer;">SKIP FOR NOW</button>
         </div>
 
-        <!-- MODAL -->
         <div id="modal-box" class="modal"><div class="modal-content" id="modal-body"></div></div>
-
-        <!-- NAVIGATION (GIFs) -->
-        <nav id="navbar" class="hidden">
-            <div class="nav-item active" onclick="changeTab('home')"><img src="home.gif" class="nav-gif"><span>Home</span></div>
-            <div class="nav-item" onclick="changeTab('chat')"><img src="chat.gif" class="nav-gif"><span>Chat</span></div>
-            <div class="nav-item" onclick="changeTab('vault')"><img src="vault.gif" class="nav-gif"><span>Vault</span></div>
-            <div class="nav-item" onclick="changeTab('profile')"><img src="profile.gif" class="nav-gif"><span>Me</span></div>
-        </nav>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, onSnapshot, serverTimestamp, writeBatch, orderBy, addDoc, limit, deleteDoc, arrayUnion, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, onSnapshot, serverTimestamp, writeBatch, orderBy, addDoc, limit, deleteDoc, arrayUnion, increment, startAfter } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // FIREBASE V33
         const firebaseConfig = {
           apiKey: "AIzaSyDjmIhz99Xb97Nf4S-QtuUuDoKTOl7P0u4",
           authDomain: "cupidchat10.firebaseapp.com",
@@ -231,9 +236,9 @@
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
 
-        let uid, coupleId, myName, partnerId, pointsPool = 0, unlockedThemes = [], replyTarget = null;
+        let uid, coupleId, myName, partnerId, pointsPool = 0, unlockedThemes = [], lastMsgDoc = null;
 
-        // AUTH ENGINE
+        // AUTH
         document.getElementById('btn-google').onclick = () => {
             setPersistence(auth, browserLocalPersistence).then(() => {
                 signInWithPopup(auth, provider).catch(e => alert("Popup Blocked!"));
@@ -277,37 +282,26 @@
                 document.getElementById('home-days').innerText = Math.floor((new Date() - d.startDate.toDate()) / 86400000);
                 document.getElementById('home-streak').innerText = `${d.streak} 🔥`;
                 document.getElementById('home-points').innerText = `${pointsPool} 💖`;
-                
                 if (d.activeTheme) applyTheme(d.activeTheme);
                 partnerId = d.uids.find(i => i !== uid);
                 const pSnap = await getDoc(doc(db, "users", partnerId));
                 const pd = pSnap.data();
                 document.getElementById('av-me').innerText = myName.charAt(0);
                 document.getElementById('av-them').innerText = pd.displayName.charAt(0);
-                document.getElementById('bond-names').innerText = `${myName} & ${pd.displayName}`;
+                document.getElementById('bond-names').innerText = `${myName} ❤️ ${pd.displayName}`;
                 document.getElementById('partner-bday-txt').innerText = `${pd.displayName}'s Birthday: ${getBday(pd.dob)}`;
                 document.getElementById('p-mood-status').innerText = `Partner is feeling ${pd.mood || "thinking..."}`;
                 loadShop();
             });
 
-            onSnapshot(query(collection(db, "couples", coupleId, "messages"), orderBy("timestamp", "desc"), limit(15)), (snap) => {
+            onSnapshot(query(collection(db, "couples", coupleId, "messages"), orderBy("timestamp", "desc"), limit(20)), (snap) => {
                 const list = document.getElementById('chat-list'); list.innerHTML = "";
                 snap.forEach(mDoc => {
                     const m = mDoc.data();
                     if (m.deletedFor && m.deletedFor.includes(uid)) return;
                     const div = document.createElement('div');
                     div.className = `msg-row ${m.senderId === uid ? 'me' : 'them'}`;
-                    let inner = `<div class="bubble glass" ondblclick="initReply('${m.text}')">`;
-                    if(m.replyTo) inner += `<div style="font-size:0.7rem; opacity:0.5; border-left:3px solid var(--pink); padding-left:5px;">⤷ ${m.replyTo}</div>`;
-                    inner += m.isUnsent ? 'Message unsent' : m.text;
-                    inner += `</div>`;
-                    div.innerHTML = inner;
-                    div.onclick = () => {
-                        const act = prompt("U: Unsend | D: Delete for Me | R: Reply");
-                        if(act?.toUpperCase() == 'U' && m.senderId == uid) updateDoc(doc(db, "couples", coupleId, "messages", mDoc.id), { isUnsent: true, text: "Message was unsent" });
-                        if(act?.toUpperCase() == 'D') updateDoc(doc(db, "couples", coupleId, "messages", mDoc.id), { deletedFor: arrayUnion(uid) });
-                        if(act?.toUpperCase() == 'R') initReply(m.text);
-                    };
+                    div.innerHTML = `<div class="bubble glass" onclick="showOptions('${mDoc.id}', '${m.senderId}')">${m.isUnsent ? 'Unsent' : m.text}</div>`;
                     list.appendChild(div);
                 });
             });
@@ -340,19 +334,16 @@
             });
         }
 
-        window.initReply = (txt) => { replyTarget = txt; document.getElementById('reply-context').classList.remove('hidden'); document.getElementById('reply-preview').innerText = "Replying: " + txt; };
-        window.closeReply = () => { replyTarget = null; document.getElementById('reply-context').classList.add('hidden'); };
-
         document.getElementById('btn-send').onclick = async () => {
             const txt = document.getElementById('chat-input').value; if(!txt.trim()) return;
-            await addDoc(collection(db, "couples", coupleId, "messages"), { senderId: uid, text: txt, timestamp: serverTimestamp(), type: 'text', deletedFor: [], reactions: {}, replyTo: replyTarget, isUnsent: false });
+            await addDoc(collection(db, "couples", coupleId, "messages"), { senderId: uid, text: txt, timestamp: serverTimestamp(), type: 'text', deletedFor: [], reactions: {}, replyTo: null, isUnsent: false });
             await updateDoc(doc(db, "couples", coupleId), { points: increment(1), lastActive: serverTimestamp() });
-            document.getElementById('chat-input').value = ""; closeReply();
+            document.getElementById('chat-input').value = "";
         };
 
         window.openModal = (type) => {
             const body = document.getElementById('modal-body');
-            if(type == 'privacy') body.innerHTML = `<h2>Privacy Policy</h2><p style="font-size:0.85rem; margin:15px 0;">Data encrypted via Firebase. Built by Avishek Ojha.</p><button class="btn-p" onclick="closeModal()">CLOSE</button>`;
+            if(type == 'privacy') body.innerHTML = `<h2>Privacy Policy</h2><p style="font-size:0.85rem; margin:15px 0;">Data is private and encrypted.</p><button class="btn-p" onclick="closeModal()">CLOSE</button>`;
             else if(type == 'name') body.innerHTML = `<h2>Nickname</h2><input type="text" id="nn-inp" value="${myName}" style="padding:15px; width:100%; margin:20px 0; border-radius:12px; border:1px solid #ddd;"><button class="btn-p" onclick="saveName()">SAVE</button>`;
             else if(type == 'date') body.innerHTML = `<h2>Anniversary</h2><input type="date" id="d-inp" style="padding:15px; width:100%; margin:20px 0; border-radius:12px; border:1px solid #ddd;"><button class="btn-p" onclick="saveDate('anniversary')">SAVE</button>`;
             else if(type == 'birthday') body.innerHTML = `<h2>My Birthday</h2><input type="date" id="b-inp" style="padding:15px; width:100%; margin:20px 0; border-radius:12px; border:1px solid #ddd;"><button class="btn-p" onclick="saveDate('birthday')">SAVE</button>`;
@@ -372,15 +363,12 @@
             document.getElementById('scr-' + id).classList.add('active');
             const map = { 'home': 0, 'chat': 1, 'vault': 2, 'profile': 3 };
             document.querySelectorAll('.nav-item')[map[id]].classList.add('active');
-            if (id === 'vault') setTimeout(() => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }, 500);
         };
 
         function getBday(dob) { if(!dob) return "Not set"; const today = new Date(); const bday = new Date(dob); let next = new Date(today.getFullYear(), bday.getMonth(), bday.getDate()); if (next < today) next.setFullYear(today.getFullYear() + 1); const d = Math.ceil((next - today) / 86400000); return d === 365 ? "Today! 🎂" : `in ${d} days`; }
-        const canvas = document.getElementById('doodle-pad'); const ctx = canvas.getContext('2d'); let draw = false;
-        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); draw = true; ctx.beginPath(); const t = e.touches[0]; const r = canvas.getBoundingClientRect(); ctx.moveTo(t.clientX - r.left, t.clientY - r.top); }, { passive: false });
-        canvas.addEventListener('touchmove', (e) => { if(!draw) return; e.preventDefault(); const t = e.touches[0]; const r = canvas.getBoundingClientRect(); ctx.lineTo(t.clientX - r.left, t.clientY - r.top); ctx.stroke(); }, { passive: false });
-        canvas.addEventListener('touchend', () => draw = false);
-        document.getElementById('btn-draw-send').onclick = () => { send("🎨 Shared a drawing!"); ctx.clearRect(0,0,canvas.width, canvas.height); };
+        const canvas = document.getElementById('doodle-pad'); const ctx = canvas.getContext('2d');
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); ctx.beginPath(); const r = canvas.getBoundingClientRect(); ctx.moveTo(e.touches[0].clientX - r.left, e.touches[0].clientY - r.top); });
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); const r = canvas.getBoundingClientRect(); ctx.lineTo(e.touches[0].clientX - r.left, e.touches[0].clientY - r.top); ctx.stroke(); }, { passive: false });
         document.querySelectorAll('.mood-opt').forEach(opt => { opt.onclick = () => updateDoc(doc(db, "users", uid), { mood: opt.dataset.m }); });
         document.getElementById('my-code-display').onclick = () => { navigator.clipboard.writeText(document.getElementById('my-code-display').innerText); alert("Copied!"); };
 
@@ -396,6 +384,12 @@
             batch.update(doc(db, "users", partner.id), { coupleId: cid });
             batch.set(doc(db, "couples", cid), { uids: [uid, partner.id], startDate: new Date(), streak: 1, points: 0, lastActive: serverTimestamp(), fernHealth: 100, activeTheme: 'default', unlockedThemes: ['default'] });
             await batch.commit();
+        };
+
+        window.showOptions = (id, sender) => {
+            const act = prompt("U: Unsend | D: Delete for Me");
+            if(act?.toUpperCase() == 'U' && sender == uid) updateDoc(doc(db, "couples", coupleId, "messages", id), { isUnsent: true, text: "Message was unsent" });
+            if(act?.toUpperCase() == 'D') updateDoc(doc(db, "couples", coupleId, "messages", id), { deletedFor: arrayUnion(uid) });
         };
     </script>
 </body>
