@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>CupidLOVE | Master V30 Final</title>
+    <title>CupidLOVE | Avishek Ojha Master V33</title>
     
-    <!-- Premium Resources -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -24,39 +23,44 @@
         body, html { height: 100%; width: 100%; overflow: hidden; font-family: var(--font); background: #FFF5F7; transition: 0.5s; }
         .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: -2; transition: 0.8s; }
 
-        .app-container { width: 100%; height: 100%; max-width: 500px; margin: 0 auto; position: relative; display: flex; flex-direction: column; background: #fff; box-shadow: 0 0 50px rgba(0,0,0,0.1); }
+        .app-container { 
+            width: 100%; height: 100%; max-width: 500px; 
+            margin: 0 auto; position: relative; display: flex; 
+            flex-direction: column; background: #fff; box-shadow: 0 0 50px rgba(0,0,0,0.1); 
+        }
 
-        /* --- HEADER & FULLSCREEN --- */
+        /* --- HEADER --- */
         header { 
-            height: 75px; background: var(--pink); display: flex; 
+            height: 70px; background: var(--pink); display: flex; 
             align-items: center; justify-content: space-between; 
             padding: 0 20px; z-index: 3000; color: white; border-bottom: 3px solid var(--yellow);
             flex-shrink: 0;
         }
         .header-logo { height: 35px; border-radius: 8px; border: 2px solid var(--yellow); }
-        .bond-ui { display: flex; align-items: center; gap: 8px; }
+        .bond-ui { display: flex; align-items: center; gap: 10px; flex: 1; justify-content: center; }
         .av { width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--pink); display: flex; align-items: center; justify-content: center; font-weight: 900; border: 2px solid var(--yellow); font-size: 0.7rem; }
         .heart-beat { color: var(--yellow); animation: beat 1.2s infinite; }
         @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
 
-        /* --- SCREEN ENGINE --- */
-        .screen-container { flex: 1; position: relative; overflow: hidden; }
-        .screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; padding: 20px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        /* --- SCREEN CONTAINER --- */
+        .screen-container { flex: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .screen { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; flex-direction: column; padding: 20px;
+            overflow-y: auto; -webkit-overflow-scrolling: touch;
+        }
         .screen.active { display: flex; }
 
-        /* --- CHAT SECTION (V30 ADVANCED) --- */
+        /* --- CHAT SECTION (KEYBOARD FIX) --- */
         #scr-chat { padding: 0; background: #f9f9f9; }
         #chat-list { flex: 1; display: flex; flex-direction: column-reverse; overflow-y: auto; padding: 15px; }
         .msg-row { width: 100%; display: flex; margin-bottom: 12px; }
         .me { justify-content: flex-end; } .them { justify-content: flex-start; }
-        .bubble { max-width: 80%; padding: 12px 18px; border-radius: 22px; font-weight: 500; font-size: 0.95rem; line-height: 1.4; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; user-select: none; }
+        .bubble { max-width: 80%; padding: 12px 18px; border-radius: 22px; font-weight: 500; font-size: 1rem; line-height: 1.4; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .me .bubble { background: var(--pink); color: #fff; border-bottom-right-radius: 4px; }
         .them .bubble { background: #fff; color: #333; border: 1px solid #eee; border-bottom-left-radius: 4px; }
-        .bubble.unsent { opacity: 0.5; font-style: italic; font-size: 0.8rem; }
         
-        .reply-box { font-size: 0.7rem; opacity: 0.6; margin-bottom: 4px; border-left: 3px solid var(--pink); padding-left: 5px; }
-        
-        .input-bar { display: flex; flex-direction: column; background: #fff; border-top: 1px solid #eee; flex-shrink: 0; }
+        .chat-input-bar { display: flex; flex-direction: column; background: #fff; border-top: 1px solid #eee; flex-shrink: 0; }
         #reply-context { padding: 8px 15px; background: #f0f0f0; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; border-left: 5px solid var(--pink); }
         .chat-tools { display: flex; gap: 10px; padding: 12px 18px; align-items: center; }
         #chat-input { flex: 1; border: none; font-size: 1rem; outline: none; background: #f5f5f5; padding: 10px 20px; border-radius: 30px; }
@@ -64,21 +68,21 @@
         /* --- NAVIGATION (GIF ICONS) --- */
         nav { height: 95px; display: flex; justify-content: space-around; align-items: center; background: #fff; border-top: 1px solid #eee; z-index: 3000; padding-bottom: env(safe-area-inset-bottom); flex-shrink: 0; }
         .nav-item { text-align: center; color: #BDBDBD; transition: 0.3s; cursor: pointer; flex: 1; display: flex; flex-direction: column; align-items: center; }
-        .nav-gif { width: 35px; height: 35px; margin-bottom: 2px; filter: grayscale(100%) opacity(0.5); transition: 0.3s; }
+        .nav-gif { width: 35px; height: 35px; margin-bottom: 2px; filter: grayscale(100%) opacity(0.5); }
         .nav-item.active { color: var(--pink); transform: translateY(-8px); }
         .nav-item.active .nav-gif { filter: grayscale(0%) opacity(1); transform: scale(1.2); }
         .nav-item span { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; }
 
         /* --- UI COMPONENTS --- */
         .glass-card { background: var(--glass); border-radius: 30px; padding: 25px; box-shadow: var(--shadow); border: 1px solid rgba(216, 27, 96, 0.1); margin-bottom: 20px; }
-        .hero { background: var(--pink); color: white; text-align: center; padding: 40px 20px; border-radius: 35px; }
-        .shop-card { display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(0,0,0,0.03); border-radius: 20px; margin-bottom: 12px; }
+        .shop-card { display: flex; align-items: center; gap: 15px; padding: 15px; background: #fff; border-radius: 20px; margin-bottom: 12px; border: 1px solid #eee; }
         .shop-img { width: 55px; height: 55px; border-radius: 12px; object-fit: cover; border: 2px solid var(--pink); }
+        
+        .btn-p { background: var(--pink); color: #fff; border: none; padding: 16px; border-radius: 15px; font-weight: 900; width: 100%; cursor: pointer; font-family: 'Cinzel'; }
         
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); z-index: 9999; display: none; justify-content: center; align-items: center; padding: 25px; }
         .modal-content { width: 100%; max-width: 450px; background: #fff; border-radius: 35px; padding: 35px; text-align: center; }
-        .btn-p { background: var(--pink); color: #fff; border: none; padding: 16px; border-radius: 15px; font-weight: 900; width: 100%; cursor: pointer; transition: 0.3s; font-family: 'Cinzel'; }
-        
+
         .hidden { display: none !important; }
     </style>
 </head>
@@ -90,6 +94,7 @@
         
         <!-- HEADER -->
         <header id="main-header" class="hidden">
+            <img src="https://store.avishekojha.com.np/cc.jpg" class="header-logo">
             <div class="bond-ui">
                 <div class="av" id="av-me">U</div>
                 <div class="heart-beat"><i class="fas fa-heart"></i></div>
@@ -104,21 +109,18 @@
             
             <!-- HOME -->
             <div id="scr-home" class="screen active">
-                <div class="hero">
-                    <p style="font-size: 0.7rem; font-weight: 800; letter-spacing: 4px;">SOUL BOND SINCE</p>
+                <div style="background: var(--pink); color: white; padding: 40px 20px; border-radius: 30px; text-align: center;">
+                    <p style="font-size: 0.7rem; font-weight: 800; letter-spacing: 4px;">LOVE JOURNEY</p>
                     <h1 id="home-days" style="font-size: 6rem; font-family: 'Cinzel'; color: var(--yellow); line-height: 1;">0</h1>
                     <p style="font-weight: 800;">DAYS TOGETHER</p>
                 </div>
-                
                 <div class="glass-card" style="padding: 15px; text-align: center; border: 2px solid var(--yellow); margin-top: 15px; background:#fff;">
-                    <i class="fas fa-cake-candles gold"></i> <span id="partner-bday-txt" style="font-weight:700; font-size:0.85rem;">Bday: Loading...</span>
+                    <i class="fas fa-cake-candles gold"></i> <span id="partner-bday-txt">Bday: Loading...</span>
                 </div>
-
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-                    <div class="glass-card" style="text-align: center; padding: 20px; margin: 0;"><h2 id="home-streak" style="color: var(--pink);">0 🔥</h2><p style="font-size: 0.6rem; font-weight: 800; opacity: 0.6;">STREAK</p></div>
-                    <div class="glass-card" style="text-align: center; padding: 20px; margin: 0;"><h2 id="home-points" style="color: var(--pink);">0 💖</h2><p style="font-size: 0.6rem; font-weight: 800; opacity: 0.6;">POINTS</p></div>
+                    <div class="glass-card" style="text-align: center; padding: 20px; margin: 0;"><h2 id="home-streak" style="color: var(--pink);">0 🔥</h2><p style="font-size: 0.6rem; font-weight: 800;">STREAK</p></div>
+                    <div class="glass-card" style="text-align: center; padding: 20px; margin: 0;"><h2 id="home-points" style="color: var(--pink);">0 💖</h2><p style="font-size: 0.6rem; font-weight: 800;">POINTS</p></div>
                 </div>
-
                 <p style="margin:25px 0 10px 0; font-weight:900; color:var(--pink); font-size:0.8rem; font-family:'Cinzel';">THEME SHOP</p>
                 <div id="theme-shop-list"></div>
             </div>
@@ -126,14 +128,11 @@
             <!-- CHAT -->
             <div id="scr-chat" class="screen">
                 <div id="chat-list"></div>
-                <div class="input-bar">
-                    <div id="reply-context" class="hidden">
-                        <span id="reply-preview">Replying to...</span>
-                        <i class="fas fa-times-circle" style="cursor:pointer;" onclick="closeReply()"></i>
-                    </div>
+                <div class="chat-input-bar">
+                    <div id="reply-context" class="hidden"><span id="reply-preview">Replying...</span><i class="fas fa-times-circle" onclick="closeReply()"></i></div>
                     <div class="chat-tools">
                         <i class="fas fa-camera" style="font-size:1.5rem; color:#ccc;"></i>
-                        <input type="text" id="chat-input" placeholder="Type a love note...">
+                        <input type="text" id="chat-input" placeholder="Whisper something...">
                         <button id="btn-send" class="btn-p" style="width:45px; height:45px; border-radius:50%; padding:0;"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
@@ -158,7 +157,7 @@
                 </div>
             </div>
 
-            <!-- PROFILE -->
+            <!-- PROFILE (SCROLLABLE SETTINGS) -->
             <div id="scr-profile" class="screen">
                 <div class="glass-card" style="text-align: center; border: 3px dashed var(--pink); background: #FFFDE7;">
                     <p style="font-weight: 900; color: var(--pink);">MY PAIR CODE</p>
@@ -166,18 +165,25 @@
                     <p style="font-size: 0.6rem;">TAP TO COPY</p>
                 </div>
 
-                <div style="background:#fff; border-radius: 20px; overflow: hidden; margin-top: 20px; border: 1px solid #eee;">
-                    <div class="setting-row" style="padding:18px; border-bottom:1px solid #f9f9f9; display:flex; justify-content:space-between; cursor:pointer;" onclick="openModal('name')"><span>Update Nickname</span><i class="fas fa-user-edit" style="color:var(--pink);"></i></div>
-                    <div class="setting-row" style="padding:18px; border-bottom:1px solid #f9f9f9; display:flex; justify-content:space-between; cursor:pointer;" onclick="openModal('date')"><span>Set Anniversary</span><i class="fas fa-calendar-heart" style="color:var(--pink);"></i></div>
-                    <div class="setting-row" style="padding:18px; border-bottom:1px solid #f9f9f9; display:flex; justify-content:space-between; cursor:pointer;" onclick="openModal('birthday')"><span>Set My Birthday</span><i class="fas fa-cake-candles" style="color:var(--pink);"></i></div>
-                    <div class="setting-row" style="padding:18px; display:flex; justify-content:space-between; cursor:pointer;" onclick="openModal('privacy')"><span>Privacy Policy</span><i class="fas fa-shield-halved" style="color:var(--pink);"></i></div>
+                <div id="box-pair" class="glass-card" style="margin-top: 20px;">
+                    <p style="font-weight: 800; color: var(--pink);">LINK PARTNER</p>
+                    <input type="text" id="partner-inp" placeholder="Partner's Code" maxlength="5" style="width: 100%; padding: 15px; margin-top: 10px; text-align: center; font-size: 1.8rem; border-radius: 15px; border: 1px solid #eee;">
+                    <button id="btn-pair" class="btn-p" style="background: var(--yellow); color: #000; margin-top: 15px;">LINK HEARTS</button>
+                </div>
+
+                <!-- SCROLLABLE SETTING BOX -->
+                <div style="background:#fff; border-radius: 20px; overflow: hidden; border: 1px solid #eee; margin-top: 20px;">
+                    <div class="setting-row" onclick="openModal('name')"><span>Update Nickname</span><i class="fas fa-user-pen" style="color:var(--pink);"></i></div>
+                    <div class="setting-row" onclick="openModal('date')"><span>Set Anniversary</span><i class="fas fa-calendar-heart" style="color:var(--pink);"></i></div>
+                    <div class="setting-row" onclick="openModal('birthday')"><span>Set My Birthday</span><i class="fas fa-cake-candles" style="color:var(--pink);"></i></div>
+                    <div class="setting-row" onclick="openModal('privacy')"><span>Privacy Policy</span><i class="fas fa-shield-halved" style="color:var(--pink);"></i></div>
                 </div>
 
                 <a href="https://web.whatsapp.com" target="_blank" style="background: #25D366; color: white; padding: 18px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: 800; margin-top: 20px;">
                     <i class="fab fa-whatsapp"></i> WhatsApp Link
                 </a>
 
-                <div style="text-align: center; padding: 30px 10px; opacity: 0.5; font-size: 0.8rem;">
+                <div style="text-align: center; padding: 40px 10px; opacity: 0.5; font-size: 0.8rem;">
                     <p>App Developed by <b>Avishek Ojha</b></p>
                     <p>Email: cc@avishekojha.com.np</p>
                     <button id="btn-logout" style="margin-top: 20px; background: #fff; border: 1px solid #ff4d4d; color: #ff4d4d; padding: 12px 30px; border-radius: 15px; width: 100%; font-weight: 800; cursor: pointer;">LOGOUT</button>
@@ -185,7 +191,7 @@
             </div>
         </div>
 
-        <!-- AUTH -->
+        <!-- AUTH OVERLAY -->
         <div id="auth-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
             <img src="https://store.avishekojha.com.np/cc.jpg" style="width: 120px; border-radius: 20px; border: 3px solid var(--pink); margin-bottom: 20px;">
             <h1 class="cinzel" style="color: var(--pink); font-size: 3rem;">CUPID</h1>
@@ -193,10 +199,10 @@
             <button id="btn-skip" style="background: none; border: none; color: var(--pink); margin-top: 25px; font-weight: 900; text-decoration: underline; cursor: pointer;">SKIP FOR NOW</button>
         </div>
 
-        <!-- MODALS -->
+        <!-- MODAL -->
         <div id="modal-box" class="modal"><div class="modal-content" id="modal-body"></div></div>
 
-        <!-- NAVBAR (GIFs) -->
+        <!-- NAVIGATION (GIFs) -->
         <nav id="navbar" class="hidden">
             <div class="nav-item active" onclick="changeTab('home')"><img src="home.gif" class="nav-gif"><span>Home</span></div>
             <div class="nav-item" onclick="changeTab('chat')"><img src="chat.gif" class="nav-gif"><span>Chat</span></div>
@@ -210,7 +216,7 @@
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, onSnapshot, serverTimestamp, writeBatch, orderBy, addDoc, limit, deleteDoc, arrayUnion, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // FIREBASE V30
+        // FIREBASE V33
         const firebaseConfig = {
           apiKey: "AIzaSyDjmIhz99Xb97Nf4S-QtuUuDoKTOl7P0u4",
           authDomain: "cupidchat10.firebaseapp.com",
@@ -225,9 +231,9 @@
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
 
-        let uid, coupleId, myName, partnerId, totalPts = 0, unlockedThemes = [], replyTarget = null;
+        let uid, coupleId, myName, partnerId, pointsPool = 0, unlockedThemes = [], replyTarget = null;
 
-        // AUTH
+        // AUTH ENGINE
         document.getElementById('btn-google').onclick = () => {
             setPersistence(auth, browserLocalPersistence).then(() => {
                 signInWithPopup(auth, provider).catch(e => alert("Popup Blocked!"));
@@ -251,10 +257,12 @@
                     document.getElementById('auth-overlay').style.display = 'none';
                     document.getElementById('main-header').classList.remove('hidden');
                     document.getElementById('navbar').classList.remove('hidden');
+                    document.getElementById('box-pair').classList.add('hidden');
                     changeTab('home'); startSync();
                 } else {
                     document.getElementById('auth-overlay').style.display = 'none';
                     document.getElementById('navbar').classList.add('hidden');
+                    document.getElementById('box-pair').classList.remove('hidden');
                     changeTab('profile');
                 }
             });
@@ -264,11 +272,11 @@
             onSnapshot(doc(db, "couples", coupleId), async (snap) => {
                 if(!snap.exists()) return;
                 const d = snap.data();
-                totalPts = d.points || 0;
+                pointsPool = d.points || 0;
                 unlockedThemes = d.unlockedThemes || ['default'];
                 document.getElementById('home-days').innerText = Math.floor((new Date() - d.startDate.toDate()) / 86400000);
                 document.getElementById('home-streak').innerText = `${d.streak} 🔥`;
-                document.getElementById('home-points').innerText = `${totalPts} 💖`;
+                document.getElementById('home-points').innerText = `${pointsPool} 💖`;
                 
                 if (d.activeTheme) applyTheme(d.activeTheme);
                 partnerId = d.uids.find(i => i !== uid);
@@ -276,28 +284,31 @@
                 const pd = pSnap.data();
                 document.getElementById('av-me').innerText = myName.charAt(0);
                 document.getElementById('av-them').innerText = pd.displayName.charAt(0);
-                document.getElementById('bond-names').innerText = `${myName} ❤️ ${pd.displayName}`;
+                document.getElementById('bond-names').innerText = `${myName} & ${pd.displayName}`;
                 document.getElementById('partner-bday-txt').innerText = `${pd.displayName}'s Birthday: ${getBday(pd.dob)}`;
                 document.getElementById('p-mood-status').innerText = `Partner is feeling ${pd.mood || "thinking..."}`;
                 loadShop();
             });
 
-            onSnapshot(query(collection(db, "couples", coupleId, "messages"), orderBy("timestamp", "desc"), limit(20)), (snap) => {
+            onSnapshot(query(collection(db, "couples", coupleId, "messages"), orderBy("timestamp", "desc"), limit(15)), (snap) => {
                 const list = document.getElementById('chat-list'); list.innerHTML = "";
                 snap.forEach(mDoc => {
                     const m = mDoc.data();
                     if (m.deletedFor && m.deletedFor.includes(uid)) return;
-                    const container = document.createElement('div');
-                    container.className = `msg-row ${m.senderId === uid ? 'me' : 'them'}`;
-                    
-                    let inner = `<div class="bubble glass" id="msg-${mDoc.id}" ondblclick="initReply('${m.text}')">`;
-                    if(m.replyTo) inner += `<div class="reply-box">⤷ ${m.replyTo}</div>`;
-                    inner += m.isUnsent ? 'This message was unsent' : m.text;
+                    const div = document.createElement('div');
+                    div.className = `msg-row ${m.senderId === uid ? 'me' : 'them'}`;
+                    let inner = `<div class="bubble glass" ondblclick="initReply('${m.text}')">`;
+                    if(m.replyTo) inner += `<div style="font-size:0.7rem; opacity:0.5; border-left:3px solid var(--pink); padding-left:5px;">⤷ ${m.replyTo}</div>`;
+                    inner += m.isUnsent ? 'Message unsent' : m.text;
                     inner += `</div>`;
-                    
-                    container.innerHTML = inner;
-                    container.onclick = () => showMessageMenu(mDoc.id, m.senderId, m.text);
-                    list.appendChild(container);
+                    div.innerHTML = inner;
+                    div.onclick = () => {
+                        const act = prompt("U: Unsend | D: Delete for Me | R: Reply");
+                        if(act?.toUpperCase() == 'U' && m.senderId == uid) updateDoc(doc(db, "couples", coupleId, "messages", mDoc.id), { isUnsent: true, text: "Message was unsent" });
+                        if(act?.toUpperCase() == 'D') updateDoc(doc(db, "couples", coupleId, "messages", mDoc.id), { deletedFor: arrayUnion(uid) });
+                        if(act?.toUpperCase() == 'R') initReply(m.text);
+                    };
+                    list.appendChild(div);
                 });
             });
         }
@@ -315,61 +326,33 @@
         }
 
         async function loadShop() {
-            const container = document.getElementById('theme-shop-list');
-            container.innerHTML = "";
+            const container = document.getElementById('theme-shop-list'); container.innerHTML = "";
             const snap = await getDocs(collection(db, "themes"));
             snap.forEach(tDoc => {
                 const t = tDoc.data(); const isOwned = unlockedThemes.includes(tDoc.id);
-                const item = document.createElement('div');
-                item.className = "shop-card glass";
-                item.innerHTML = `
-                    <img src="${t.logoUrl}" class="shop-img" onerror="this.src='https://store.avishekojha.com.np/cc.jpg'">
-                    <div style="flex:1"><p style="font-weight:900;">${t.name}</p><span style="font-size:0.7rem;">${isOwned ? 'Owned' : t.pts + ' Pts'}</span></div>
-                    <button class="btn-p" style="width:80px; padding:10px; font-size:0.7rem;">${isOwned ? 'USE' : 'BUY'}</button>
-                `;
+                const item = document.createElement('div'); item.className = "shop-card glass";
+                item.innerHTML = `<img src="${t.logoUrl}" class="shop-img" onerror="this.src='https://store.avishekojha.com.np/cc.jpg'"><div style="flex:1"><p style="font-weight:900;">${t.name}</p><span style="font-size:0.7rem;">${isOwned ? 'Owned' : t.pts + ' Pts'}</span></div><button class="btn-p" style="width:80px; padding:10px; font-size:0.7rem;">${isOwned ? 'USE' : 'BUY'}</button>`;
                 container.appendChild(item);
                 item.querySelector('button').onclick = async () => {
                     if(isOwned) updateDoc(doc(db, "couples", coupleId), { activeTheme: tDoc.id });
-                    else if(totalPts >= t.pts) {
-                        await updateDoc(doc(db, "couples", coupleId), { points: increment(-t.pts), unlockedThemes: arrayUnion(tDoc.id) });
-                    }
+                    else if(pointsPool >= t.pts) await updateDoc(doc(db, "couples", coupleId), { points: increment(-t.pts), unlockedThemes: arrayUnion(tDoc.id) });
                 }
             });
         }
 
-        window.initReply = (txt) => {
-            replyTarget = txt;
-            document.getElementById('reply-context').classList.remove('hidden');
-            document.getElementById('reply-preview').innerText = "Replying: " + txt;
-        };
-
-        window.closeReply = () => {
-            replyTarget = null;
-            document.getElementById('reply-context').classList.add('hidden');
-        };
+        window.initReply = (txt) => { replyTarget = txt; document.getElementById('reply-context').classList.remove('hidden'); document.getElementById('reply-preview').innerText = "Replying: " + txt; };
+        window.closeReply = () => { replyTarget = null; document.getElementById('reply-context').classList.add('hidden'); };
 
         document.getElementById('btn-send').onclick = async () => {
-            const txt = document.getElementById('chat-input').value;
-            if(!txt.trim()) return;
-            await addDoc(collection(db, "couples", coupleId, "messages"), { 
-                senderId: uid, text: txt, timestamp: serverTimestamp(), 
-                type: 'text', deletedFor: [], reactions: {}, replyTo: replyTarget, isUnsent: false 
-            });
+            const txt = document.getElementById('chat-input').value; if(!txt.trim()) return;
+            await addDoc(collection(db, "couples", coupleId, "messages"), { senderId: uid, text: txt, timestamp: serverTimestamp(), type: 'text', deletedFor: [], reactions: {}, replyTo: replyTarget, isUnsent: false });
             await updateDoc(doc(db, "couples", coupleId), { points: increment(1), lastActive: serverTimestamp() });
-            document.getElementById('chat-input').value = "";
-            closeReply();
-        };
-
-        window.showMessageMenu = (id, sender, txt) => {
-            const act = prompt("U: Unsend (Record in DB) | D: Delete for Me | R: Reply");
-            if(act?.toUpperCase() == 'U' && sender == uid) updateDoc(doc(db, "couples", coupleId, "messages", id), { isUnsent: true, text: "Message was unsent" });
-            if(act?.toUpperCase() == 'D') updateDoc(doc(db, "couples", coupleId, "messages", id), { deletedFor: arrayUnion(uid) });
-            if(act?.toUpperCase() == 'R') initReply(txt);
+            document.getElementById('chat-input').value = ""; closeReply();
         };
 
         window.openModal = (type) => {
             const body = document.getElementById('modal-body');
-            if(type == 'privacy') body.innerHTML = `<h2>Privacy Policy</h2><p style="font-size:0.85rem; margin:15px 0;">All data is encrypted via Firebase. Built by Avishek Ojha.</p><button class="btn-p" onclick="closeModal()">CLOSE</button>`;
+            if(type == 'privacy') body.innerHTML = `<h2>Privacy Policy</h2><p style="font-size:0.85rem; margin:15px 0;">Data encrypted via Firebase. Built by Avishek Ojha.</p><button class="btn-p" onclick="closeModal()">CLOSE</button>`;
             else if(type == 'name') body.innerHTML = `<h2>Nickname</h2><input type="text" id="nn-inp" value="${myName}" style="padding:15px; width:100%; margin:20px 0; border-radius:12px; border:1px solid #ddd;"><button class="btn-p" onclick="saveName()">SAVE</button>`;
             else if(type == 'date') body.innerHTML = `<h2>Anniversary</h2><input type="date" id="d-inp" style="padding:15px; width:100%; margin:20px 0; border-radius:12px; border:1px solid #ddd;"><button class="btn-p" onclick="saveDate('anniversary')">SAVE</button>`;
             else if(type == 'birthday') body.innerHTML = `<h2>My Birthday</h2><input type="date" id="b-inp" style="padding:15px; width:100%; margin:20px 0; border-radius:12px; border:1px solid #ddd;"><button class="btn-p" onclick="saveDate('birthday')">SAVE</button>`;
@@ -392,15 +375,7 @@
             if (id === 'vault') setTimeout(() => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }, 500);
         };
 
-        function getBday(dob) {
-            if(!dob) return "Not set yet";
-            const today = new Date(); const bday = new Date(dob);
-            let next = new Date(today.getFullYear(), bday.getMonth(), bday.getDate());
-            if (next < today) next.setFullYear(today.getFullYear() + 1);
-            const d = Math.ceil((next - today) / 86400000);
-            return d === 365 ? "Today! 🎂" : `in ${d} days`;
-        }
-
+        function getBday(dob) { if(!dob) return "Not set"; const today = new Date(); const bday = new Date(dob); let next = new Date(today.getFullYear(), bday.getMonth(), bday.getDate()); if (next < today) next.setFullYear(today.getFullYear() + 1); const d = Math.ceil((next - today) / 86400000); return d === 365 ? "Today! 🎂" : `in ${d} days`; }
         const canvas = document.getElementById('doodle-pad'); const ctx = canvas.getContext('2d'); let draw = false;
         canvas.addEventListener('touchstart', (e) => { e.preventDefault(); draw = true; ctx.beginPath(); const t = e.touches[0]; const r = canvas.getBoundingClientRect(); ctx.moveTo(t.clientX - r.left, t.clientY - r.top); }, { passive: false });
         canvas.addEventListener('touchmove', (e) => { if(!draw) return; e.preventDefault(); const t = e.touches[0]; const r = canvas.getBoundingClientRect(); ctx.lineTo(t.clientX - r.left, t.clientY - r.top); ctx.stroke(); }, { passive: false });
@@ -409,7 +384,7 @@
         document.querySelectorAll('.mood-opt').forEach(opt => { opt.onclick = () => updateDoc(doc(db, "users", uid), { mood: opt.dataset.m }); });
         document.getElementById('my-code-display').onclick = () => { navigator.clipboard.writeText(document.getElementById('my-code-display').innerText); alert("Copied!"); };
 
-        document.getElementById('btn-pair').onclick = async () => {
+        document.getElementById('btn-pair-now').onclick = async () => {
             const target = document.getElementById('partner-inp').value.trim();
             const q = query(collection(db, "users"), where("pairCode", "==", target), limit(1));
             const snap = await getDocs(q);
